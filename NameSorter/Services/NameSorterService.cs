@@ -1,10 +1,10 @@
 ﻿using NameSorter.Models;
 
-namespace NameSorter
+namespace NameSorter.Services
 {
-    public class NameSorter
+    public class NameSorterService : INameSorterService
     {
-        public static List<string> SortNames(IEnumerable<string> names)
+        public List<string> SortNames(IEnumerable<string> names)
         {
             try
             {
@@ -21,16 +21,6 @@ namespace NameSorter
                 Console.Error.WriteLine($"There was an error sorting the given names: {exception.Message}");
                 throw;
             }
-        }
-        
-        public static async Task<string[]> ReadNamesFromFileAsync(string filePath)
-        {
-            return await File.ReadAllLinesAsync(filePath);
-        }
-        
-        public static async Task WriteNamesToFileAsync(string filePath, IEnumerable<string> names)
-        {
-            await File.WriteAllLinesAsync(filePath, names);
         }
     }
 }
