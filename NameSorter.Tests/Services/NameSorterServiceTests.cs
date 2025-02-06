@@ -1,9 +1,17 @@
 using FluentAssertions;
+using NameSorter.Services;
 
-namespace NameSorter.Tests;
+namespace NameSorter.Tests.Services;
 
-public class NameSorterTests
+public class NameSorterServiceTests
 {
+    private readonly NameSorterService _nameSorterService;
+
+    public NameSorterServiceTests()
+    {
+        _nameSorterService = new NameSorterService();
+    }
+
     [Fact]
     public void SortNames_SortsListOfNames()
     {
@@ -11,7 +19,7 @@ public class NameSorterTests
         var unsortedNames = new[] {"Christopher Robin", "Winnie The Pooh", "Kanga Roo"};
         
         // act
-        var result = NameSorter.SortNames(unsortedNames);
+        var result = _nameSorterService.SortNames(unsortedNames);
 
         // assert
         var expectedSortedNames = new[] { "Winnie The Pooh", "Christopher Robin", "Kanga Roo" };
@@ -25,7 +33,7 @@ public class NameSorterTests
         var unsortedNames = new[] {"Winnie The Pooh"};
         
         // act
-        var result = NameSorter.SortNames(unsortedNames);
+        var result = _nameSorterService.SortNames(unsortedNames);
 
         // assert
         var expectedSortedNames = new[] { "Winnie The Pooh" };
@@ -33,28 +41,12 @@ public class NameSorterTests
     }
     
     [Fact]
-    public void SortNames_CanSortMononymousNames()
+    public void SortNames_ThrowsExceptionForMononymousNames()
     {
         // arrange
-        var unsortedNames = new[] {"Winnie The Pooh", "Christopher Robin", "Eeyore" };
+        var unsortedNames = new[] { "Eeyore" };
         
-        // act
-        var result = NameSorter.SortNames(unsortedNames);
-
-        // assert
-        var expectedSortedNames = new[] { "Eeyore", "Winnie The Pooh", "Christopher Robin" };
-        result.Should().Equal(expectedSortedNames);
-    }
-    
-    [Fact]
-    public void SaveSortedNames_Success()
-    {
-        
-    }
-    
-    [Fact]
-    public void SaveSortedNames_Fail()
-    {
-        
+        // act & assert
+        Assert.Throws<ArgumentException>(() => _nameSorterService.SortNames(unsortedNames));
     }
 }

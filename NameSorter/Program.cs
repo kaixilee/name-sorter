@@ -1,3 +1,5 @@
+using NameSorter.Services;
+
 namespace NameSorter;
 
 public class Program
@@ -6,23 +8,22 @@ public class Program
 
     public static async Task Main(string[] args)
     {
+        
         if (args.Length != 1)
-        {
             throw new ArgumentException("Please provide exactly one file path containing the names to be sorted, e.g. name-sorter <file-path>");
-        }
 
         var inputFilePath = args[0];
-        if (!File.Exists(inputFilePath))
-        {
-            throw new FileNotFoundException($"File '{inputFilePath}' not found.");
-        }
+        IFileService fileService = new FileService();
+        INameSorterService nameSorterService = new NameSorterService();
 
         try
         {
-            var names = await NameSorter.ReadNamesFromFileAsync(inputFilePath);
-            var sortedNames = NameSorter.SortNames(names);
-            await NameSorter.WriteNamesToFileAsync(OutputFilePath, sortedNames);
+            //sort the names and write the output to sorted-names-list.txt
+            var names = await fileService.ReadFileFromPathAsync(inputFilePath);
+            var sortedNames = nameSorterService.SortNames(names);
+            await fileService.WriteFileToPathAsync(OutputFilePath, sortedNames);
 
+            //print the sorted names to console
             foreach (var name in sortedNames)
             {
                 Console.WriteLine(name);
