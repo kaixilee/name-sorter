@@ -9,6 +9,8 @@ public class FileService : IFileService
     {
         _fileSystem = fileSystem;
     }
+    
+    /// <inheritdoc />
     public async Task<string[]> ReadFileFromPathAsync(string path)
     {
         if (!_fileSystem.File.Exists(path))
@@ -17,6 +19,7 @@ public class FileService : IFileService
         return await _fileSystem.File.ReadAllLinesAsync(path);
     }
 
+    /// <inheritdoc />
     public async Task WriteFileToPathAsync(string path, List<string> content)
     {
         var fullPath = _fileSystem.Path.GetFullPath(path);

@@ -4,6 +4,7 @@ namespace NameSorter.Services
 {
     public class NameSorterService : INameSorterService
     {
+        /// <inheritdoc />
         public List<string> SortNames(IEnumerable<string> names)
         {
             var namesToSort = names.ToList();
