@@ -19,10 +19,11 @@ public class FileService : IFileService
 
     public async Task WriteFileToPathAsync(string path, List<string> content)
     {
-        var directory = _fileSystem.Path.GetDirectoryName(path);
+        var fullPath = _fileSystem.Path.GetFullPath(path);
+        var directory = _fileSystem.Path.GetDirectoryName(fullPath);
         if (!_fileSystem.Directory.Exists(directory))
             throw new DirectoryNotFoundException($"Directory not found: {directory}");
 
-        await _fileSystem.File.WriteAllLinesAsync(path, content);
+        await _fileSystem.File.WriteAllLinesAsync(fullPath, content);
     }
 }
