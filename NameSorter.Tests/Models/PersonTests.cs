@@ -7,7 +7,7 @@ public class PersonTests
 {
     [Theory]
     [InlineData("Winnie The Pooh", "Pooh", "Winnie The")]
-    [InlineData("Winnie   The   Pooh", "Pooh", "Winnie The")]
+    [InlineData("Christopher          Robin", "Robin", "Christopher")]
     public void Person_ShouldInitialiseNamesProperly(string fullName, string lastName, string givenNames)
     {
         // act

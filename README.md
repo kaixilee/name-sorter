@@ -3,6 +3,7 @@
 ## Overview
 `name-sorter` is a console application that reads a list of names from a specified file, 
 sorts the names by last name and then by given names, and writes the sorted names to an output file. 
+The names to sort must have at least one given name, and up to three given names.
 The sorted names are also printed to the console.
 
 ## Project Structure

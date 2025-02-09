@@ -6,6 +6,11 @@ public class Person
     public string LastName { get; }
     public string GivenNames { get; }
 
+    /// <summary>
+    /// Initializes a new instance of the Person class with the specified full name.
+    /// The name must have one last name, at least one given name, and not more than three given names.
+    /// The last name is set to the last part of the full name, and the given names are set to the remaining parts.
+    /// </summary>
     public Person(string fullName)
     {
         if (string.IsNullOrWhiteSpace(fullName))

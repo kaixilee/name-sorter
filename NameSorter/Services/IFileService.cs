@@ -13,6 +13,6 @@ public interface IFileService
     /// Writes the specified content to the file at the specified path
     /// </summary>
     /// <param name="path">The path to the file to write</param>
-    /// <param name="content">The content to write to the file</param>
+    /// <param name="content">A list of strings, each representing a new row to be written to the file.</param>
     Task WriteFileToPathAsync(string path, List<string> content);
 }
