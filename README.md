@@ -6,6 +6,9 @@ sorts the names by last name and then by given names, and writes the sorted name
 The names to sort must have at least one given name, and up to three given names.
 The sorted names are also printed to the console.
 
+## Prerequisites
+- [.NET SDK](https://dotnet.microsoft.com/download) (version 6.0 or later)
+
 ## Project Structure
 The project is divided into two main parts:
 
